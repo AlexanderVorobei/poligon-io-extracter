@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 from typing import Union
 
 from dotenv import load_dotenv
-
+import pandas as pd
 from pydantic import BaseModel
 import requests
 
@@ -114,3 +114,12 @@ def filter_symbol(symbols: list[Symbol]):
                 continue
         result += [symbol]
     return result
+
+
+def to_xlsx(file_path: str, content: list[Symbol]):
+    xls_data: pd.DataFrame = pd.DataFrame(content.dict())
+    xls_data.to_excel(
+        file_path,
+        engine="openpyxl",
+        index=False,
+    )
