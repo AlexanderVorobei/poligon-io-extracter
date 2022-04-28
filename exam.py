@@ -116,10 +116,11 @@ def filter_symbol(symbols: list[Symbol]):
     return result
 
 
-def to_xlsx(file_path: str, content: list[Symbol]):
+def to_xlsx(file_path: str, content: list[Symbol], sheet_name: str):
     xls_data: pd.DataFrame = pd.DataFrame(content.dict())
     xls_data.to_excel(
         file_path,
+        sheet_name=sheet_name,
         engine="openpyxl",
         index=False,
     )
