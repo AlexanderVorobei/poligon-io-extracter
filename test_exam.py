@@ -1,5 +1,5 @@
 import json
-from exam import get_symbols, ListResult
+from exam import get_symbols, Results
 
 
 def test_get_symbols():
@@ -10,8 +10,8 @@ def test_get_symbols():
         json.dump(symbols, f, indent=2)
 
 
-def test_serial():
+def test_serializer():
     with open("test-symbols.json", "r") as f:
         j = json.load(f)
-        sym: ListResult = ListResult.parse_obj(j)
+        sym: Results = Results.parse_obj(j)
         assert sym
